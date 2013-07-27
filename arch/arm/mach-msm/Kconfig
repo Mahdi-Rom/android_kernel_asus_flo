@@ -1648,16 +1648,22 @@ config MSM_CPU_FREQ_MIN
 
 endif # CPU_FREQ_MSM
 
+config CPU_OVERCLOCK
+	bool "Enable CPU Overclocking option"
+	default n
+	help
+	  Enable CPU overclock for kraig apq8064 socs
+
 config CPU_VOLTAGE_TABLE
-  bool "Enable CPU Voltage Table via sysfs for adjustements"
-  default n
-  help
-    Krait User Votlage Control
+  	bool "Enable CPU Voltage Table via sysfs for adjustements"
+  	default n
+  	help
+    	Krait User Votlage Control
 
 config CMDLINE_OPTIONS
-    bool "Enable cmdline s2w/khz/gov/maxscroff/scheduler command parsing"
-    default n
-    help
+    	bool "Enable cmdline s2w/khz/gov/maxscroff/scheduler command parsing"
+    	default n
+    	help
          This enables the parsing of special cmdline variables.
 
 config MSM_AVS_HW
