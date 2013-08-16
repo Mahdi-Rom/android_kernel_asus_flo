@@ -1650,6 +1650,12 @@ config CPU_OVERCLOCK
 	help
 	  Enable CPU overclock for kraig apq8064 socs
 
+config GPU_OVERCLOCK
+        bool "Enable GPU Overclocking option"
+        default n
+        help
+          APQ8064 GPU overclocking
+
 config CPU_VOLTAGE_TABLE
   bool "Enable CPU Voltage Table via sysfs for adjustements"
   default n
