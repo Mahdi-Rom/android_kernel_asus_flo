@@ -1654,13 +1654,20 @@ config GPU_OVERCLOCK
         bool "Enable GPU Overclocking option"
         default n
         help
-          APQ8064 GPU overclocking
+          APQ8064 GPU overclocking to 487.5
+
+config GPU_OVERCLOCK_450
+        bool "Enable special GPU Overclocking option"
+        depends on GPU_OVERCLOCK
+        default n
+        help
+          APQ8064 GPU overclocking to 450
 
 config CPU_VOLTAGE_TABLE
-  bool "Enable CPU Voltage Table via sysfs for adjustements"
-  default n
-  help
-    Krait User Votlage Control
+        bool "Enable CPU Voltage Table via sysfs for adjustements"
+        default n
+        help
+          Krait User Votlage Control
 
 config MSM_AVS_HW
 	bool "Enable Adaptive Voltage Scaling (AVS)"
