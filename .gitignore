@@ -86,9 +86,9 @@ GTAGS
 \#*#
 Packages/
 build-mahdi-4.3.sh
+build-mahdi-4.3-caf.sh
 build-mahdi-exp.sh
-build-mahdi-stable.sh
-build-mahdi-exp-msm.sh
+build-mahdi-exp-caf.sh
 kernel/usr/
 mkbootfs
 mkbootimg
