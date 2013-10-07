@@ -89,6 +89,7 @@ build-mahdi-4.3.sh
 build-mahdi-4.3-caf.sh
 build-mahdi-exp.sh
 build-mahdi-exp-caf.sh
+build-mahdi-exp-linaro.sh
 kernel/usr/
 mkbootfs
 mkbootimg
