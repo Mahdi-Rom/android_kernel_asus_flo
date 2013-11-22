@@ -43,15 +43,23 @@ extern void thaw_processes(void);
 extern void thaw_kernel_threads(void);
 
 /*
+ * HACK: prevent sleeping while atomic warnings due to ARM signal handling
+ * disabling irqs
+ */
+static inline bool try_to_freeze_nowarn(void)
+{
+	if (likely(!freezing(current)))
+		return false;
+	return __refrigerator(false);
+}
+
+/*
  * DO NOT ADD ANY NEW CALLERS OF THIS FUNCTION
  * If try_to_freeze causes a lockdep warning it means the caller may deadlock
  */
 static inline bool try_to_freeze_unsafe(void)
 {
-/* This causes problems for ARM targets and is a known
- * problem upstream.
- *	might_sleep();
- */
+	might_sleep();
 	if (likely(!freezing(current)))
 		return false;
 	return __refrigerator(false);
@@ -106,7 +114,10 @@ static inline void freezer_count(void)
 	try_to_freeze();
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> kk-4.4
 /* DO NOT ADD ANY NEW CALLERS OF THIS FUNCTION */
 static inline void freezer_count_unsafe(void)
 {
@@ -131,7 +142,11 @@ static inline int freezer_should_skip(struct task_struct *p)
 }
 
 /*
+<<<<<<< HEAD
  * These macros are intended to be used whenever you want allow a task that's
+=======
+ * These functions are intended to be used whenever you want allow a task that's
+>>>>>>> kk-4.4
  * sleeping in TASK_UNINTERRUPTIBLE or TASK_KILLABLE state to be frozen. Note
  * that neither return any clear indication of whether a freeze event happened
  * while in this function.
