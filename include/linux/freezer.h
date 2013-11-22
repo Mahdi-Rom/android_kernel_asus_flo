@@ -48,9 +48,9 @@ extern void thaw_kernel_threads(void);
  */
 static inline bool try_to_freeze_nowarn(void)
 {
-	if (likely(!freezing(current)))
-		return false;
-	return __refrigerator(false);
+        if (likely(!freezing(current)))
+                return false;
+        return __refrigerator(false);
 }
 
 /*
@@ -59,10 +59,10 @@ static inline bool try_to_freeze_nowarn(void)
  */
 static inline bool try_to_freeze_unsafe(void)
 {
-	might_sleep();
-	if (likely(!freezing(current)))
-		return false;
-	return __refrigerator(false);
+        might_sleep();
+        if (likely(!freezing(current)))
+                return false;
+        return __refrigerator(false);
 }
 
 static inline bool try_to_freeze(void)
@@ -114,10 +114,6 @@ static inline void freezer_count(void)
 	try_to_freeze();
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> kk-4.4
 /* DO NOT ADD ANY NEW CALLERS OF THIS FUNCTION */
 static inline void freezer_count_unsafe(void)
 {
