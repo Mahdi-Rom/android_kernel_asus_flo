@@ -19,9 +19,7 @@
 #include <linux/cpufreq.h>
 #include <mach/socinfo.h>
 #include <mach/scm.h>
-#ifdef CONFIG_MSM_MPDEC_INPUTBOOST_CPUMIN
-#include <linux/input.h>
-#endif
+
 #include "kgsl.h"
 #include "kgsl_pwrscale.h"
 #include "kgsl_device.h"
@@ -33,10 +31,6 @@ static unsigned int g_show_stats = 0;
 #define MIN_POLL_INTERVAL 10000
 #define MAX_POLL_INTERVAL 1000000
 static unsigned long g_polling_interval = 100000;
-
-#ifdef CONFIG_MSM_MPDEC_INPUTBOOST_CPUMIN    
-    bool is_boosted;    
-#endif
 
 static unsigned long walltime_total = 0;
 static unsigned long busytime_total = 0;
@@ -89,7 +83,7 @@ static void conservative_idle(struct kgsl_device *device,
 	int val = 0;
 	unsigned int loadpct;
 
-	if (is_boosted == 1) {
+	if (mako_boosted == 1) {
 		if (boosted_pwrlevel < pwr->active_pwrlevel)
 			kgsl_pwrctrl_pwrlevel_change(device, boosted_pwrlevel);
 
