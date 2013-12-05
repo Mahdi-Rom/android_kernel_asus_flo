@@ -32,8 +32,6 @@
 
 #include <linux/sweep2wake.h>
 
-int pwr_key_pressed = 0;
-
 struct gpio_button_data {
 	const struct gpio_keys_button *button;
 	struct input_dev *input;
@@ -349,7 +347,6 @@ static void gpio_keys_gpio_report_event(struct gpio_button_data *bdata)
 	} else {
 		input_event(input, type, button->code, !!state);
 	}
-
 	input_sync(input);
 }
 
@@ -367,12 +364,6 @@ static void gpio_keys_gpio_work_func(struct work_struct *work)
 	if ((button->code <= KEY_POWER) && (button->code >= KEY_VOLUMEDOWN))
 		pr_info("gpio_keys: %s %s\n", state ? "Pressed" : "Released",
 			key_descriptions[button->code - KEY_VOLUMEDOWN]);
-
-/*s2w*/
-	if (button->code == 116 && state) {
-		pwr_key_pressed = 1;
-	}
-
 #endif
 	gpio_keys_gpio_report_event(bdata);
 }

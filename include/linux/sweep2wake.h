@@ -20,4 +20,3 @@
 
 
 extern void sweep2wake_setdev(struct input_dev * input_device); 
-extern int pwr_key_pressed;
